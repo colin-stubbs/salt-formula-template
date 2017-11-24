@@ -1,0 +1,17 @@
+{% import_yaml 'template/defaults.yaml' as default_settings %}
+
+{% set os_family_map = salt['grains.filter_by']({
+    'RedHat': {
+      'pkgs': [ 'template', 'package', 'list' ],
+    },
+    'default': { },
+  }, grain='os_family', default='default', merge=salt['pillar.get']('template:lookup')) %}
+
+{% do default_settings.template.update(os_family_map) %}
+
+{% set template_settings = salt['pillar.get'](
+    'template',
+    default=default_settings.template,
+    merge=True,
+  )
+%}
