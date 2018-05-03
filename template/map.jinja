@@ -7,7 +7,7 @@
     'default': { },
   }, grain='os_family', default='default', merge=salt['pillar.get']('template:lookup')) %}
 
-{% do default_settings.template.update(os_family_map) %}
+{% do default_settings.template.lookup.update(os_family_map) %}
 
 {% set template_settings = salt['pillar.get'](
     'template',

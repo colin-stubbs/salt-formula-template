@@ -1,5 +1,4 @@
-template:
+templates:
   lookup:
     pkgs:
-      - packages
-  blah: 1234
+      - example
